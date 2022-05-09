@@ -51,6 +51,26 @@ namespace PipelineTextTransformer.DataAccess
         {
             return JsonSerializer.Serialize<ProjectContainer>(proj);
         }
+        public Transformer DeserializeTransfromer(string str)
+        {
+            Assembly asm = typeof(Transformer).Assembly;
+            JsonDocument doc = JsonDocument.Parse(str);
+            string typestring =  doc.RootElement.GetProperty("objType").ToString();
+            Type curType = asm.GetType(typestring);
+
+            Transformer processedTransformer = (Transformer)JsonSerializer.Deserialize(str, curType);
+            
+            if (processedTransformer is PipelineTransformer)
+            {
+                SetPipelineObjectTypes((PipelineTransformer)processedTransformer);
+            }
+            return processedTransformer;
+        }
+        public string SerializeTransformer(Transformer proj, Type t)
+        {
+            return JsonSerializer.Serialize(proj,t);
+        }
+        
         private void SetPipelineObjectTypes(PipelineTransformer tr)
         {
             Assembly asm = typeof(Transformer).Assembly;

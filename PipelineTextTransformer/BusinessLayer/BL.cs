@@ -19,6 +19,7 @@ namespace PipelineTextTransformer
 
         public Transformer selectedTransformer_tree2 { get; internal set; }
 
+        public string copyBoard;
         //public int selectedIndex = 0;
         public BL(DAL dal)
         {
@@ -89,6 +90,18 @@ namespace PipelineTextTransformer
             
             parent.Children.Add(myNew);
             
+        }
+
+        internal void CopySelected()
+        {
+            Type t = selectedTransformer_tree2.GetType();
+            copyBoard = dal.SerializeTransformer(selectedTransformer_tree2, t);
+        }
+
+        internal void Paste()
+        {
+            Transformer pasted = dal.DeserializeTransfromer(copyBoard);
+            project.mainTransformer_2.Children.Add(pasted);
         }
     }
 
