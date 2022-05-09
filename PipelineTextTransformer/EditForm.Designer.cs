@@ -46,9 +46,11 @@ namespace PipelineTextTransformer
             this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDeleteTransformer = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnPaste = new System.Windows.Forms.Button();
+            this.btnCopySelected = new System.Windows.Forms.Button();
             this.lstNewType = new System.Windows.Forms.ListBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -56,13 +58,13 @@ namespace PipelineTextTransformer
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -85,7 +87,7 @@ namespace PipelineTextTransformer
             this.txtPreviewSoure.Multiline = true;
             this.txtPreviewSoure.Name = "txtPreviewSoure";
             this.txtPreviewSoure.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtPreviewSoure.Size = new System.Drawing.Size(2647, 432);
+            this.txtPreviewSoure.Size = new System.Drawing.Size(2647, 398);
             this.txtPreviewSoure.TabIndex = 0;
             this.txtPreviewSoure.TextChanged += new System.EventHandler(this.txtPreviewSoure_TextChanged);
             // 
@@ -97,7 +99,7 @@ namespace PipelineTextTransformer
             this.txtPreviewResult.Multiline = true;
             this.txtPreviewResult.Name = "txtPreviewResult";
             this.txtPreviewResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtPreviewResult.Size = new System.Drawing.Size(2647, 422);
+            this.txtPreviewResult.Size = new System.Drawing.Size(2647, 390);
             this.txtPreviewResult.TabIndex = 0;
             // 
             // propertyGrid1
@@ -239,8 +241,9 @@ namespace PipelineTextTransformer
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnPaste);
+            this.groupBox1.Controls.Add(this.btnCopySelected);
             this.groupBox1.Controls.Add(this.lstNewType);
-            this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.btnAddTransformer);
             this.groupBox1.Controls.Add(this.btnDeleteTransformer);
@@ -253,6 +256,26 @@ namespace PipelineTextTransformer
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Edit transformers";
             // 
+            // btnPaste
+            // 
+            this.btnPaste.Location = new System.Drawing.Point(455, 328);
+            this.btnPaste.Name = "btnPaste";
+            this.btnPaste.Size = new System.Drawing.Size(259, 58);
+            this.btnPaste.TabIndex = 21;
+            this.btnPaste.Text = "Paste";
+            this.btnPaste.UseVisualStyleBackColor = true;
+            this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
+            // 
+            // btnCopySelected
+            // 
+            this.btnCopySelected.Location = new System.Drawing.Point(455, 264);
+            this.btnCopySelected.Name = "btnCopySelected";
+            this.btnCopySelected.Size = new System.Drawing.Size(259, 58);
+            this.btnCopySelected.TabIndex = 21;
+            this.btnCopySelected.Text = "Copy";
+            this.btnCopySelected.UseVisualStyleBackColor = true;
+            this.btnCopySelected.Click += new System.EventHandler(this.btnCopySelected_Click);
+            // 
             // lstNewType
             // 
             this.lstNewType.FormattingEnabled = true;
@@ -261,16 +284,6 @@ namespace PipelineTextTransformer
             this.lstNewType.Name = "lstNewType";
             this.lstNewType.Size = new System.Drawing.Size(405, 496);
             this.lstNewType.TabIndex = 16;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(465, 343);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(185, 45);
-            this.checkBox1.TabIndex = 11;
-            this.checkBox1.Text = "Wrap text";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -282,6 +295,19 @@ namespace PipelineTextTransformer
             this.button2.Text = "Add as child";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.btnAddAsChild_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(12, 114);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(185, 45);
+            this.checkBox1.TabIndex = 11;
+            this.checkBox1.Text = "Wrap text";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // label2
             // 
@@ -295,13 +321,14 @@ namespace PipelineTextTransformer
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.txtSourcePath);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Location = new System.Drawing.Point(0, 713);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.groupBox2.Size = new System.Drawing.Size(2647, 104);
+            this.groupBox2.Size = new System.Drawing.Size(2647, 170);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Data source";
@@ -358,6 +385,16 @@ namespace PipelineTextTransformer
             this.panel1.Size = new System.Drawing.Size(2647, 713);
             this.panel1.TabIndex = 19;
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(2318, 183);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(188, 58);
+            this.btnRefresh.TabIndex = 16;
+            this.btnRefresh.Text = "button3";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.treeView1);
@@ -399,7 +436,7 @@ namespace PipelineTextTransformer
             // 
             this.splitContainer1.Cursor = System.Windows.Forms.Cursors.HSplit;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 817);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 883);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -413,8 +450,8 @@ namespace PipelineTextTransformer
             // 
             this.splitContainer1.Panel2.Controls.Add(this.txtPreviewResult);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
-            this.splitContainer1.Size = new System.Drawing.Size(2647, 947);
-            this.splitContainer1.SplitterDistance = 473;
+            this.splitContainer1.Size = new System.Drawing.Size(2647, 881);
+            this.splitContainer1.SplitterDistance = 439;
             this.splitContainer1.SplitterWidth = 11;
             this.splitContainer1.TabIndex = 20;
             // 
@@ -440,16 +477,6 @@ namespace PipelineTextTransformer
             this.label1.TabIndex = 1;
             this.label1.Text = "Output:";
             // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Location = new System.Drawing.Point(2318, 183);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(188, 58);
-            this.btnRefresh.TabIndex = 16;
-            this.btnRefresh.Text = "button3";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
             // EditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
@@ -463,12 +490,11 @@ namespace PipelineTextTransformer
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "EditForm";
-            this.Text = "Multiple whitespace chars: \\\\s+";
+            this.Text = "Text transformer";
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -526,5 +552,7 @@ namespace PipelineTextTransformer
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ListBox lstNewType;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnPaste;
+        private System.Windows.Forms.Button btnCopySelected;
     }
 }

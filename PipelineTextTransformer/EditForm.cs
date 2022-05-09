@@ -415,5 +415,37 @@ namespace PipelineTextTransformer
         {
             DrawTransformerList();
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            txtPreviewSoure.WordWrap = checkBox1.Checked;
+            txtPreviewResult.WordWrap = checkBox1.Checked;
+        }
+
+        private void btnCopySelected_Click(object sender, EventArgs e)
+        {
+            //bl.copyBoard = bl.dal.SerializeTransformer(bl.selectedTransformer_tree2);
+            bl.CopySelected();
+
+            //ProjectContainer cpProj = new ProjectContainer();
+            //cpProj.mainTransformer_2 = bl.selectedTransformer_tree2
+            //bl.dal.Serializeproject
+
+
+            //string copy_type = bl.selectedTransformer_tree2.GetType().FullName;
+            //var copy_obj = bl.selectedTransformer_tree2;
+
+            //DataObject myDataObject = new DataObject(copy_type, copy_obj);
+            //Clipboard.SetDataObject(myDataObject);
+        }
+
+        private void btnPaste_Click(object sender, EventArgs e)
+        {
+            bl.Paste();
+            //var d = Clipboard.GetDataObject();
+            //var pasted = d.GetData("PipelineTextTransformer.Transformer");
+            
+            
+        }
     }
 }
