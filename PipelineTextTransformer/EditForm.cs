@@ -447,5 +447,14 @@ namespace PipelineTextTransformer
             
             
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            // Why is not updates in the children discovered (no events are sent)
+            string test = "{\"Children\":[{\"FindWhat\":\"a\",\"ReplaceWith\":\"b\",\"UseRegex\":false,\"objType\":\"PipelineTextTransformer.ReplaceTransformer\",\"Comment\":null}],\"objType\":\"PipelineTextTransformer.PipelineTransformer\",\"Comment\":null}";
+            Transformer pasted = bl.dal.DeserializeTransfromer(test);
+            bl.project.mainTransformer_2.Children.Insert(0, pasted);
+        }
     }
 }

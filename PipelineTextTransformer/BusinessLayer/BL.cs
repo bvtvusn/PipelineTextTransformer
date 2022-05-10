@@ -100,8 +100,20 @@ namespace PipelineTextTransformer
 
         internal void Paste()
         {
+            PipelineTransformer parent = project.mainTransformer_2;
+            int index = 0;
+
+            if(selectedTransformer_tree2 != null)
+            {
+                parent = Transformer.RecursiveParentFinder(project.mainTransformer_2, selectedTransformer_tree2);
+                index = parent.Children.IndexOf(selectedTransformer_tree2);
+            }
+
+            
             Transformer pasted = dal.DeserializeTransfromer(copyBoard);
-            project.mainTransformer_2.Children.Add(pasted);
+
+            parent.Children.Insert(index + 1, pasted);
+            //project.mainTransformer_2.Children.Add(pasted);
         }
     }
 

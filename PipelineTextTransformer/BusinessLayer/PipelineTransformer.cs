@@ -8,6 +8,11 @@ namespace PipelineTextTransformer
     [Serializable]
     public class PipelineTransformer : Transformer
     {
+
+        // Development for later:
+        // MAKE sure when pastnig nested transformers, that all the children are connected to the parents eventhandler.
+
+
         //public int NumActiveSteps { 
         //    get { return numActiveSteps; } 
         //    set { numActiveSteps = value;
@@ -50,10 +55,29 @@ namespace PipelineTextTransformer
                 foreach (Transformer item in e.NewItems)
                 {
                     item.PropertyChanged += PipelineTransformer_PropertyChanged;
+
+                    if (item is PipelineTransformer)
+                    {
+                        (item as PipelineTransformer).AttachParentNotifier();
+                    }
                 }
             }
             
             OnPropertyChanged("Child transformer added / removed");
+        }
+
+        public void AttachParentNotifier()
+        {
+            foreach (Transformer item in Children)
+            {
+                item.PropertyChanged -= PipelineTransformer_PropertyChanged;
+                item.PropertyChanged += PipelineTransformer_PropertyChanged;
+
+                if (item is PipelineTransformer)
+                {
+                    (item as PipelineTransformer).AttachParentNotifier();
+                }
+            }
         }
 
         private void PipelineTransformer_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
