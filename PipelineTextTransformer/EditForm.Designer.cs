@@ -66,7 +66,6 @@ namespace PipelineTextTransformer
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -197,21 +196,21 @@ namespace PipelineTextTransformer
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
@@ -414,10 +413,10 @@ namespace PipelineTextTransformer
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(128, 0);
+            this.button3.Location = new System.Drawing.Point(310, 0);
             this.button3.Margin = new System.Windows.Forms.Padding(1);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(77, 21);
+            this.button3.Size = new System.Drawing.Size(188, 58);
             this.button3.TabIndex = 22;
             this.button3.Text = "TestData";
             this.button3.UseVisualStyleBackColor = true;
@@ -484,16 +483,6 @@ namespace PipelineTextTransformer
             this.label1.Size = new System.Drawing.Size(48, 15);
             this.label1.TabIndex = 1;
             this.label1.Text = "Output:";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(310, 0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(188, 58);
-            this.button3.TabIndex = 22;
-            this.button3.Text = "TestData";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // EditForm
             // 

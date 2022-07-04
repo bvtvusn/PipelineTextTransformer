@@ -131,6 +131,8 @@ namespace PipelineTextTransformer.DataAccess
             var fileContent = string.Empty;
             var filePath = string.Empty;
 
+            ProjectContainer imp = null;
+
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 //Get the path of specified file
@@ -143,10 +145,12 @@ namespace PipelineTextTransformer.DataAccess
                 {
                     fileContent = reader.ReadToEnd();
                 }
+
+                imp = Deserializeproject(fileContent);
+                imp.projectPath = filePath;
             }
 
-            ProjectContainer imp = Deserializeproject(fileContent);
-            imp.projectPath = filePath;
+            
 
             return imp;
             //MessageBox.Show(fileContent, "File Content at path: " + filePath, MessageBoxButtons.OK);

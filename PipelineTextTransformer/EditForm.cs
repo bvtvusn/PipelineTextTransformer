@@ -302,6 +302,7 @@ namespace PipelineTextTransformer
         {
             bl.OpenFile();
             //bl.project = bl.dal.OpenFile();
+
             ReloadProject();
         }
         private void ReloadProject()

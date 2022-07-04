@@ -54,7 +54,11 @@ namespace PipelineTextTransformer
         }
         public void OpenFile()
         {
-            project = dal.OpenFile();
+            ProjectContainer tmp =  dal.OpenFile();
+            if (tmp is { })
+            {
+                project = tmp;
+            }
         }
         internal void moveTransformer(Transformer selected, int v)
         {
