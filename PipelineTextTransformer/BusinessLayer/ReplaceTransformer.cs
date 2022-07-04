@@ -24,9 +24,23 @@ namespace PipelineTextTransformer
         public void TestParameters()
         {
             string indata = "Once upon a";
-            string findUnescaped = Regex.Unescape(findWhat);
-            string replacementUnescaped = Regex.Unescape(replaceWith);
-            Regex.Replace(indata, findUnescaped, replacementUnescaped);
+
+            
+            string findUnescaped;
+            string replacementUnescaped;
+            if (UseRegex)
+            {
+                findUnescaped = Regex.Unescape(findWhat);
+                replacementUnescaped = Regex.Unescape(replaceWith);
+                Regex.Replace(indata, findUnescaped, replacementUnescaped);
+            }
+            else
+            {
+                findUnescaped = findWhat;
+                replacementUnescaped = replaceWith;
+                indata.Replace(findWhat, replaceWith);
+            }
+
         }
         public override string Transform(string indata)
         {
